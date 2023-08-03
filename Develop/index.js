@@ -1,7 +1,10 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
+
 // TODO: Create an array of questions for user input
+const generateMarkdown = require('../Develop/utils/generateMarkdown')
+inquirer
 const questions = () => {
     return inquirer.prompt([
       {
@@ -37,14 +40,13 @@ const questions = () => {
     ]);
   };
 
-  const generateREADME = ({Projectname, Description, Installation, usage, credits, license})
+ 
 
 
   const init = () => {
     questions()
-      // Use writeFile method imported from fs.promises to use promises instead of
-      // a callback function
-      .then((answers) => writeFile('README.md', generateREADME(answers)))
+
+      .then((answers) => writeFile('README.md', generateMarkdown(answers)))
       .then(() => console.log('Success'))
       .catch((err) => console.error(err));
   };
